@@ -1,0 +1,14 @@
+extends layout
+block content
+  h1= title
+  - let results = [{novelName :"Cinder" , novelCost : 400, novelAuthor: "Marissa"},{novelName :"Island" , novelCost : 500, novelAuthor: "Aldous"},{novelName :"Verity" , novelCost : 600, novelAuthor: "Colleen"}]
+  div(class="container-fluid mt-3")
+  div(class="row")
+    each novel ,index in results
+        div(class="col-sm-2" onclick=`buy(${index})`)  #{novel.novelName} -  #{novel.novelCost} - #{novel.novelAuthor}
+  
+    script.
+      function buy(itemNo)
+        {
+          alert(`You purchased Item ${itemNo+1}`)
+        }     
