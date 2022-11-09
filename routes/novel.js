@@ -1,9 +1,6 @@
 var express = require('express');
+const novel_controlers= require('../controllers/novel'); 
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('novel', { title: 'Search Results novel' });
-});
-
+router.get('/', novel_controlers.novel_view_all_Page ); 
 module.exports = router;
