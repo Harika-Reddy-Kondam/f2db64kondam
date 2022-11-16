@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1= title
+    - let novelid = toShow._id
+    - let novelName = toShow.novelName
+    - let novelCost = toShow.novelCost
+    - let novelAuthor = toShow.novelAuthor
+    div
+        div.row
+            div(class='novelAttr mr-3') novel ID is:
+            div #{novelid}
+        div.row
+            div(class='novelAttr mr-3') novel Name is:
+            div #{novelName}
+        div.row
+            div(class='novelAttr mr-3') novel Cost is:
+            div #{novelCost}
+        div.row
+            div(class='novelAttr mr-3') novel Author is:
+            div #{novelAuthor}
