@@ -1,40 +1,47 @@
 extends layout
 block content
     h1= title
-    - let novelid = toShow._id
-    - let novelName = toShow.novelName
-    - let novelCost = toShow.novelCost
-    - let novelAuthor = toShow.novelAuthor
-    div.row(class='mb-2')
-        div.mr-1 ID is
-        div #{novelid}
-    - let actionid = "/resource/novel/" + novelid
-    form(id='novelForm', action= actionid, method="PUT")
-        div.form-group
-            label.novelAttr(for='novelName') novel Name
-            input#novelName(type='text', name='novelName', value= novelName )
-        div.form-group
-            label.novelAttr(for='novelCost') novel Cost
-            input#novelCost(type='number', name='novelCost', value= novelCost )    
-        div.form-group
-            label.novelAttr(for='novelAuthor') novel Author
-            input#quantityAvailable(type='text', name='novelAuthor', value= novelAuthor )
+    if (toShow == null)
+        h2 No instance to update
+    else
+        - let novelid = toShow._id
+        - let novelName = toShow.novelName
+        - let novelCost = toShow.novelCost
+        - let novelAuthor = toShow.novelAuthor
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{novelid}
+        - let actionid = "/resource/novel/" + novelid
+        form(id='novelForm', action= actionid, method="PUT")
+            div.form-group(class="form-group")
+                label.novelAttr(for='novelName') novel Name
+                p
+                input#novelName(type='text', name='novelName', value= novelName,class="form-control")
+            div.form-group(class="form-group")
+                label.novelAttr(for='novelCost') novel Cost
+                p
+                input#novelCost(type='number', name='novelCost', value= novelCost,class="form-control")
+                
+            div.form-group(class="form-group")
+                label.novelAttr(for='novelAuthor') novel Author
+                p
+                input#quantityAvailable(type='text', name='novelAuthor', value= novelAuthor ,class="form-control")
         
-        input(type="submit")
-    script.
-        document.forms['novelForm'].addEventListener('submit', (event) => {
-        event.preventDefault();
-        // TODO do something here to show user that form is being submitted
-        fetch(event.target.action, {
-            method: 'PUT',
-            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-        }).then((resp) => {
-            return resp.json(); // or resp.text() or whatever the server sends
-        }).then((body) => {
-            alert("Update succeded")
-            // TODO handle body
-        }).catch((error) => {
-            // TODO handle error
-            alert("Update failed " + error )
-        });
-        });
+            button(class="btn btn-success m-2") Submit
+        script.
+            document.forms['novelForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Update succeded")
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Update failed " + error )
+            });
+            });
