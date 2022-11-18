@@ -3,12 +3,14 @@ block content
   h1= title
   - let novels = results
   div(class="container-fluid mt-3")
-  div(class="row")
-    each novel ,index in novels
-        div(class="col-sm-2" onclick=`buy(${index})`)  #{novel.novelName} -  #{novel.novelCost} - #{novel.novelAuthor}
+    div(class="row m-1") 
+      each novel ,index in novels
+        - let destination = `dispatch(\"/novel/update?id=${novel._id}\")`  
+        div(class="col-sm-2", class="m-1")  #{novel.novelName} -  #{novel.novelCost} - #{novel.novelAuthor}
+          p 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update        
   
     script.
-      function buy(itemNo)
-        {
-          alert(`You purchased Item ${itemNo+1}`)
-        }     
+      function dispatch(path){
+        window.location.href=path
+      }    
