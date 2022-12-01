@@ -20,7 +20,7 @@ block content
             div.form-group(class="form-group")
                 label.novelAttr(for='novelCost') novel Cost
                 p
-                input#novelCost(type='number', name='novelCost', value= novelCost,class="form-control")
+                input#novelCost(type='number', name='novelCost', value= novelCost,class="form-control",min=10,max=1200,required)
                 
             div.form-group(class="form-group")
                 label.novelAttr(for='novelAuthor') novel Author
